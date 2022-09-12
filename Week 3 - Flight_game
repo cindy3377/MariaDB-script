@@ -1,0 +1,88 @@
+Week 3
+
+/q1, name airports in Iceland
+
+ select country.name as "country name", airport.name as "airport name"
+ from country 
+ left join airport 
+ on country.iso_country = airport.iso_country
+ where country.name = "Iceland";
+
+/q2, large airport_type and name of country France
+
+select airport.name as "airport name"
+from country
+join airport 
+on country.iso_country = airport.iso_country
+where airport.type = "large_airport"
+and country.name = "France";
+
+/q3 names and country names of all airports in antarctica
+
+select country.name as country_name, airport.name as airport_name
+from country 
+left join airport
+on country.continent = airport.continent
+where country.continent = "an";
+
+/q4 Heini's elevation_ft
+
+select airport.elevation_ft
+from game
+join airport
+on game.location = airport.ident
+where game.screen_name ="Heini";
+
+/q5 Heini's elevation_ft to elevation_m
+
+select (airport.elevation_ft * 0.3048) as elevation_m
+from game
+join airport
+on game.location = airport.ident
+where game.screen_name ="Heini";
+
+/q6 the airport where Ilkka at
+
+select airport.name
+from game
+join airport
+on game.location = airport.ident
+where game.screen_name = "Ilkka";
+
+/q7
+select country.name
+from game
+inner join airport
+on game.location = airport.ident
+
+inner join country
+on airport.iso_country = country.iso_country
+where game.screen_name= "Ilkka";
+
+/q8
+select goal.name as name
+from game
+inner join goal_reached
+on game.id = goal_reached.goal_id
+
+inner join goal
+on goal_reached.game_id = goal.id
+where game.screen_name = "Heini";
+
+/q9
+select country.name 
+from country
+
+inner join airport
+on country.iso_country = airport.iso_country
+
+inner join game
+on airport.ident = game.location 
+
+inner join goal_reached 
+on game.id = goal_reached.goal_id
+
+inner join goal
+on goal_reached.game_id = goal.id
+where game.screen_name = "Ilkka" and goal.name ="clouds";
+
