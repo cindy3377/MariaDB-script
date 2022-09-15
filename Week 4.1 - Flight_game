@@ -1,0 +1,29 @@
+/1
+select country.name as "country name", airport.name as "airport name"
+from country inner join airport on airport.iso_country = country.iso_country
+where country.name = "Finland" and scheduled_service = "yes";
+
+
+/2 
+select game.screen_name, airport.name
+from game 
+inner join airport
+on game.location = airport.ident; 
+
+/3
+select game.screen_name, country.name
+from game
+inner join airport 
+on game.location = airport.ident
+
+inner join country
+on airport.iso_country = country.iso_country;
+
+/4
+select name, game.screen_name from airport 
+left join game on airport.ident = game.location
+where name like "%hels%";
+
+/5
+select name, screen_name
+from goal left join goal_reached on goal.id = goal_id  left join game on game.id = game_id;
